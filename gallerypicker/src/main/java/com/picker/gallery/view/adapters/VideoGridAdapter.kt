@@ -49,7 +49,6 @@ class VideoGridAdapter() : RecyclerView.Adapter<VideoGridAdapter.MyViewHolder>()
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-
         if (THRESHOLD != 0) {
             if (getSelectedCount() >= THRESHOLD) mimageList.filterNot { it.isSelected }.forEach { it.isEnabled = false }
             else mimageList.forEach { it.isEnabled = true }

@@ -3,7 +3,6 @@ package com.aakash.imageandvideopicker;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 public class CameraSelectActivity extends AppCompatActivity {
@@ -20,12 +19,12 @@ public class CameraSelectActivity extends AppCompatActivity {
         findViewById(R.id.portrate).setOnClickListener(v -> {
             PortraitCameraActivity.startActivity(CameraSelectActivity.this);
         });
-      /*  findViewById(R.id.landscape).setOnClickListener(v -> {
-           // LandscapeCameraActivity.startActivity(CameraSelectActivity.this);
+        findViewById(R.id.landscape).setOnClickListener(v -> {
+            LandscapeCameraActivity.startActivity(CameraSelectActivity.this);
         });
         findViewById(R.id.square).setOnClickListener(v -> {
-           // SquareCameraActivity.startActivity(CameraSelectActivity.this);
-        });*/
+            SquareCameraActivity.startActivity(CameraSelectActivity.this);
+        });
 
     }
 }

@@ -1,6 +1,7 @@
 package com.picker.gallery.view
 
 import android.Manifest
+
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ContentUris
@@ -14,6 +15,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 
@@ -23,6 +25,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
+
 import com.google.android.material.tabs.TabLayout
 
 import com.picker.gallery.R
@@ -30,9 +33,10 @@ import kotlinx.android.synthetic.main.activity_picker.*
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import java.lang.Exception
+
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.Exception
 
 class PickerActivity : AppCompatActivity() {
 
@@ -70,7 +74,20 @@ class PickerActivity : AppCompatActivity() {
         })
 
         camera.setOnClickListener {
-            if (isCameraPermitted()) dispatchTakePictureIntent() else checkCameraPermission()
+            Toast.makeText(this@PickerActivity, "image clicked", Toast.LENGTH_SHORT).show()
+            try {
+                 var launchIntent =
+                getPackageManager().getLaunchIntentForPackage("com.aakash.imageandvideopicker");
+                if (launchIntent != null) {
+                    startActivity(
+                        launchIntent) //null pointer check in case package name was not found ClassNotFoundException
+                }
+            } catch (e:Exception) {
+                e.printStackTrace()
+            }
+
+            //startActivity(Intent(this@PickerActivity, Class.forName(" com.aakash.imageandvideopicker.MainActivity")))
+         //  if (isCameraPermitted()) dispatchTakePictureIntent() else checkCameraPermission()
         }
     }
 
@@ -203,5 +220,9 @@ class PickerActivity : AppCompatActivity() {
         override fun getItemPosition(`object`: Any): Int = POSITION_NONE
 
         override fun getPageTitle(position: Int): CharSequence? = null
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 }

@@ -4,11 +4,10 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,15 +16,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_two);
         findViewById(R.id.movie_preview).setOnClickListener(v -> {
-           // PlayerActivity.startActivity(MainActivity.this);
+            PlayerActivity.startActivity(MainActivity.this);
         });
         findViewById(R.id.camera_record).setOnClickListener(v -> {
-             CameraSelectActivity.startActivity(MainActivity.this);
+            CameraSelectActivity.startActivity(MainActivity.this);
         });
         findViewById(R.id.mp4_compose).setOnClickListener(v -> {
-          //  Mp4ComposeActivity.startActivity(MainActivity.this);
+            Mp4ComposeActivity.startActivity(MainActivity.this);
         });
     }
 

@@ -4,11 +4,21 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Admin/AndroidStudioProjects/VideoAndCamera/ImageAndVideoPicker/src/main/res/layout/activity_camera.xml" value="0.13796296296296295" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/VideoAndCamera/ImageAndVideoPicker/src/main/res/layout/activity_camera_landscape.xml" value="0.13796296296296295" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/VideoAndCamera/ImageAndVideoPicker/src/main/res/layout/activity_camera_pickfrom_gallery.xml" value="0.15364583333333334" />
-        <entry key="..\:/Users/Admin/AndroidStudioProjects/VideoAndCamera/ImageAndVideoPicker/src/main/res/layout/activity_camera_portrate.xml" value="0.13796296296296295" />
-        <entry key="..\:/Users/Admin/AndroidStudioProjects/VideoAndCamera/ImageAndVideoPicker/src/main/res/layout/activity_main.xml" value="0.13796296296296295" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/VideoAndCamera/ImageAndVideoPicker/src/main/res/layout/activity_camera_portrate.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/VideoAndCamera/ImageAndVideoPicker/src/main/res/layout/activity_camera_square.xml" value="0.13796296296296295" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/VideoAndCamera/ImageAndVideoPicker/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/VideoAndCamera/ImageAndVideoPicker/src/main/res/layout/activity_main_two.xml" value="0.13796296296296295" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/VideoAndCamera/ImageAndVideoPicker/src/main/res/layout/activity_mp4compose.xml" value="0.13796296296296295" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/VideoAndCamera/ImageAndVideoPicker/src/main/res/layout/activity_player.xml" value="0.13796296296296295" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/VideoAndCamera/ImageAndVideoPicker/src/main/res/layout/row_text.xml" value="0.13796296296296295" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/VideoAndCamera/ImageAndVideoPicker/src/main/res/layout/row_video_list.xml" value="0.13796296296296295" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/VideoAndCamera/ImageAndVideoPicker/src/main/res/layout/row_white_text.xml" value="0.13796296296296295" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/VideoAndCamera/app/src/main/res/layout/activity_main.xml" value="0.15364583333333334" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/VideoAndCamera/gallerypicker/src/main/res/layout/activity_picker.xml" value="0.13796296296296295" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/VideoAndCamera/gallerypicker/src/main/res/layout/album_item.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/VideoAndCamera/gallerypicker/src/main/res/layout/fragment_media.xml" value="0.13796296296296295" />
       </map>
     </option>
   </component>

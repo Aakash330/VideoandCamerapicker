@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/ImageAndVideoPicker" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/gallerypicker" />
+            <option value="$PROJECT_DIR$/gpuv" />
           </set>
         </option>
       </GradleProjectSettings>

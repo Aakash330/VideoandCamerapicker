@@ -24,7 +24,6 @@ class CameraPickfromGallery : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_camera_pickfrom_gallery)
-
         if (isReadWritePermitted()) getGalleryResults() else checkReadWritePermission()
         val i = Intent(this@CameraPickfromGallery, PickerActivity::class.java)
         i.putExtra("IMAGES_LIMIT", 4)
