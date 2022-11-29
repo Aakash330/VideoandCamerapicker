@@ -20,3 +20,4 @@ include ':ImageAndVideoPicker'
 include ':gallerypicker'
 
 include ':gpuv'
+include ':app:videosbasesample'
