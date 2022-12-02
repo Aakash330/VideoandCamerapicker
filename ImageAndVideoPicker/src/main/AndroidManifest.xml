@@ -6,15 +6,15 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
 
+    <!--
+        <uses-feature android:name="android.hardware.camera" />
+        <uses-feature android:name="android.hardware.camera.autofocus" />
 
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
 
-
-    <!-- Microphone permissions -->
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
+        &lt;!&ndash; Microphone permissions &ndash;&gt;
+        <uses-permission android:name="android.permission.RECORD_AUDIO" />
+        <uses-permission android:name="android.permission.INTERNET" />
+        <uses-permission android:name="android.permission.WAKE_LOCK" />-->
 
 
 
@@ -23,37 +23,6 @@
         <activity
             android:name=".CameraPickfromGallery"
             android:exported="false" />
-
-        <activity
-            android:name=".PlayerActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".CameraSelectActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".PortraitCameraActivity"
-            android:exported="false"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".LandscapeCameraActivity"
-            android:screenOrientation="landscape" />
-
-        <activity android:name=".SquareCameraActivity" />
-
-        <activity android:name=".Mp4ComposeActivity" />
-
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
 
 
     </application>

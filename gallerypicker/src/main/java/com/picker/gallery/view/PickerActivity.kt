@@ -25,6 +25,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.aakash.videobasesamplegpuv.MainActivity
+import com.aakash.videobasesamplegpuv.PortraitCameraActivity
 
 import com.google.android.material.tabs.TabLayout
 
@@ -74,20 +76,24 @@ class PickerActivity : AppCompatActivity() {
         })
 
         camera.setOnClickListener {
+
             Toast.makeText(this@PickerActivity, "image clicked", Toast.LENGTH_SHORT).show()
             try {
-                 var launchIntent =
+              /*   var launchIntent =
                 getPackageManager().getLaunchIntentForPackage("com.aakash.imageandvideopicker");
                 if (launchIntent != null) {
                     startActivity(
                         launchIntent) //null pointer check in case package name was not found ClassNotFoundException
-                }
+                }*/
+
+                startActivity(Intent(this@PickerActivity, PortraitCameraActivity::class.java))
+                finish()
             } catch (e:Exception) {
                 e.printStackTrace()
             }
-
+          //  if (isCameraPermitted()) dispatchTakePictureIntent() else checkCameraPermission()
             //startActivity(Intent(this@PickerActivity, Class.forName(" com.aakash.imageandvideopicker.MainActivity")))
-         //  if (isCameraPermitted()) dispatchTakePictureIntent() else checkCameraPermission()
+
         }
     }
 
@@ -127,7 +133,7 @@ class PickerActivity : AppCompatActivity() {
         val imageFileName = "JPEG_" + timeStamp + "_"
         val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         val image = File.createTempFile(imageFileName, ".jpg", storageDir)
-        mCurrentPhotoPath = image.absolutePath
+         mCurrentPhotoPath = image.absolutePath
         return image
     }
 
@@ -194,14 +200,14 @@ class PickerActivity : AppCompatActivity() {
     }
 
     private fun setUpViewPager(viewPager: ViewPager) {
-        val adapter = ViewPagerAdapter(this@PickerActivity.supportFragmentManager)
-        val photosFragment = PhotosFragment()
-        adapter.addFragment(photosFragment, "PHOTOS")
-        val videosFragment = VideosFragment()
-        adapter.addFragment(videosFragment, "VIDEOS")
-        viewPager.adapter = adapter
-        (viewPager.adapter as ViewPagerAdapter).notifyDataSetChanged()
-        viewPager.currentItem = 0
+         val adapter = ViewPagerAdapter(this@PickerActivity.supportFragmentManager)
+         val photosFragment = PhotosFragment()
+         adapter.addFragment(photosFragment, "PHOTOS")
+         val videosFragment = VideosFragment()
+         adapter.addFragment(videosFragment, "VIDEOS")
+         viewPager.adapter = adapter
+         (viewPager.adapter as ViewPagerAdapter).notifyDataSetChanged()
+         viewPager.currentItem = 0
     }
 
     internal inner class ViewPagerAdapter(manager: FragmentManager) : FragmentStatePagerAdapter(manager) {
@@ -224,5 +230,12 @@ class PickerActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    override fun onResume() {
+        if (!isCameraPermitted())
+             checkCameraPermission()
+        super.onResume()
     }
 }

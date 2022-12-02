@@ -3,6 +3,9 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
 android {
     compileSdk 32
 
@@ -38,12 +41,13 @@ dependencies {
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.0"
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation project(path: ':gpuv')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
     implementation 'com.github.bumptech.glide:glide:4.14.2'
     implementation "com.google.android.exoplayer:exoplayer-core:2.15.1"
+
+    //this module depend on gallerypicker module
     implementation project(':gallerypicker')
 
 

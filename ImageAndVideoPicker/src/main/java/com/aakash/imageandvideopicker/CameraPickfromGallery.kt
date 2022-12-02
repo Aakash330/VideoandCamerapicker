@@ -2,11 +2,13 @@ package com.aakash.imageandvideopicker
 
 import android.Manifest
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.aakash.imageandvideopicker.databinding.ActivityCameraPickfromGalleryBinding
 import com.picker.gallery.model.GalleryData
@@ -27,7 +29,7 @@ class CameraPickfromGallery : AppCompatActivity() {
         if (isReadWritePermitted()) getGalleryResults() else checkReadWritePermission()
         val i = Intent(this@CameraPickfromGallery, PickerActivity::class.java)
         i.putExtra("IMAGES_LIMIT", 4)
-        i.putExtra("VIDEOS_LIMIT", 1)
+        i.putExtra("VIDEOS_LIMIT", 3)
         i.putExtra("REQUEST_RESULT_CODE", REQUEST_RESULT_CODE)
         startActivityForResult(i, 101)
        // setContentView(R.layout.activity_camera_pickfrom_gallery)
@@ -64,5 +66,20 @@ class CameraPickfromGallery : AppCompatActivity() {
 
     private fun isReadWritePermitted(): Boolean = (checkCallingOrSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED && checkCallingOrSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
 
+    override fun onResume() {
 
+
+        /* Intent launchIntent =
+                   getPackageManager().getLaunchIntentForPackage("com.aakash.videoandcamera");
+                if (launchIntent != null) {
+                    startActivity(
+                        launchIntent); //null pointer check in case package name was not found ClassNotFoundException
+                }*/
+        val sharedPreferences: SharedPreferences
+        sharedPreferences = getSharedPreferences("com.aakash.imageandvideopicker", MODE_PRIVATE)
+       // sharedPreferences.edit().putString("path")
+        val string=sharedPreferences.getString("path","Akash")
+        Log.w("runinng","path"+string)
+        super.onResume()
+    }
 }
