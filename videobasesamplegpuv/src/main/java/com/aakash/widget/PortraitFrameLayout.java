@@ -4,6 +4,7 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.SurfaceView;
 import android.widget.FrameLayout;
 
 public class PortraitFrameLayout extends FrameLayout {
@@ -26,5 +27,6 @@ public class PortraitFrameLayout extends FrameLayout {
         int width = getMeasuredWidth();
         setMeasuredDimension(width, width / 9 * 16);
     }
+
 }
 
