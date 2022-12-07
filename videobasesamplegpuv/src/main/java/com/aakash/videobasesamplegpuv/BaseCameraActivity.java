@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.opengl.GLException;
 import android.os.Environment;
@@ -12,6 +14,7 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
@@ -66,7 +69,10 @@ public class BaseCameraActivity extends AppCompatActivity implements FilterRvLis
 
     protected void onCreateActivity() {
         if(getSupportActionBar()!=null)
-        getSupportActionBar().hide();
+           getSupportActionBar().hide();
+
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+       // getWindow().setStatusBarColor();
         recordBtn = findViewById(R.id.btn_record);
         rvFilter=findViewById(R.id.rvFilter);
         modelList=new ArrayList<>();

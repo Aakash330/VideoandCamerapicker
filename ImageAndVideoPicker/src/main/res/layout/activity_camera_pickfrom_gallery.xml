@@ -9,11 +9,81 @@
     android:layout_height="match_parent"
     tools:context=".CameraPickfromGallery">
 
-    <TextView
+
+    <FrameLayout
+        android:id="@+id/fram"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/exoPlayerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:visibility="gone"
+            app:controller_layout_id="@layout/custom_controls"
+            app:default_artwork="@drawable/exo_ic_default_album_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:resize_mode="fixed_width"
+            app:show_buffering="when_playing"
+            app:use_artwork="true">
+
+        </com.google.android.exoplayer2.ui.PlayerView>
+        <VideoView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_500sdp"
+            android:layout_gravity="center"
+            android:id="@+id/videoview"/>
+    </FrameLayout>
+
+
+    <EditText
+        android:id="@+id/ed_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:hint="put ur youtube url"
+        android:padding="8dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fram" />
+    <Button
+        android:id="@+id/btnPlaynext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DO EDITING"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="8dp"
+        android:text="next page"
+        android:visibility="visible"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ed_url" />
+
+    <Button
+        android:id="@+id/btnlive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="live video"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/btnPlaynext"
+        app:layout_constraintStart_toStartOf="@+id/btnPlaynext"
+        app:layout_constraintTop_toBottomOf="@+id/btnPlaynext" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+
+        app:layout_constraintBottom_toBottomOf="@+id/fram"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -32,6 +32,7 @@ android {
     buildFeatures{
         dataBinding true
     }
+
 }
 
 dependencies {
@@ -45,14 +46,26 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
     implementation 'com.github.bumptech.glide:glide:4.14.2'
-    implementation "com.google.android.exoplayer:exoplayer-core:2.15.1"
+  //  implementation "com.google.android.exoplayer:exoplayer-core:2.15.1"
+
+   // implementation("com.google.android.exoplayer:exoplayer-core:2.15.1")
+ //   implementation("com.google.android.exoplayer:exoplayer-core:2.14.1")
+
+    implementation 'com.google.android.exoplayer:exoplayer:2.17.1'
 
     //this module depend on gallerypicker module
+
+    //exo player
+    implementation 'com.google.android.exoplayer:exoplayer:2.14.1'
+    implementation 'com.google.android.exoplayer:exoplayer-dash:2.14.1'
+   //video trim library
+    implementation 'com.arthenica:mobile-ffmpeg-min:4.4.LTS'
+    //gson library
+    implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
+
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
+    implementation 'com.akexorcist:localization:1.2.9'
     implementation project(':gallerypicker')
-
-
-
-
-
 
 }

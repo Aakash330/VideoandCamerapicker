@@ -4,6 +4,8 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Window;
@@ -11,6 +13,10 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 
 public class PortraitCameraActivity extends BaseCameraActivity {
     private static final int CAMERA_PERMISSION_REQUEST_CODE = 88888;
@@ -22,11 +28,17 @@ public class PortraitCameraActivity extends BaseCameraActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_camera_portrate);
 
+        setContentView(R.layout.activity_camera_portrate);
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+       ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) actionBar.hide();
+
+       WindowInsetsControllerCompat windowInsetsController =
+                WindowCompat.getInsetsController(getWindow(), getWindow().getDecorView());
+                windowInsetsController.setSystemBarsBehavior(WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+        windowInsetsController.hide(WindowInsetsCompat.Type.systemBars());
          videoWidth = 720;
          videoHeight = 1280;
          cameraWidth = 1280;
