@@ -17,7 +17,6 @@ class VideoComposer {
     private static final int DRAIN_STATE_NONE = 0;
     private static final int DRAIN_STATE_SHOULD_RETRY_IMMEDIATELY = 1;
     private static final int DRAIN_STATE_CONSUMED = 2;
-
     private final MediaExtractor mediaExtractor;
     private final int trackIndex;
     private final MediaFormat outputFormat;

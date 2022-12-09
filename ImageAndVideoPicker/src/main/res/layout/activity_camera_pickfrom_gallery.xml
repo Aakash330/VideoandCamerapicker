@@ -7,6 +7,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".CameraPickfromGallery">
 
 
@@ -14,9 +15,11 @@
         android:id="@+id/fram"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <com.google.android.exoplayer2.ui.PlayerView
             android:id="@+id/exoPlayerView"
             android:layout_width="match_parent"
@@ -33,11 +36,12 @@
             app:use_artwork="true">
 
         </com.google.android.exoplayer2.ui.PlayerView>
+
         <VideoView
+            android:id="@+id/videoview"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_500sdp"
-            android:layout_gravity="center"
-            android:id="@+id/videoview"/>
+            android:layout_gravity="center" />
     </FrameLayout>
 
 
@@ -54,25 +58,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fram" />
+
     <Button
         android:id="@+id/btnPlaynext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="next page"
-        android:visibility="visible"
+        android:text="Cut"
         android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_url" />
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnlive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="live video"
-        android:visibility="gone"
+        android:text=""
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/btnPlaynext"
         app:layout_constraintStart_toStartOf="@+id/btnPlaynext"
         app:layout_constraintTop_toBottomOf="@+id/btnPlaynext" />

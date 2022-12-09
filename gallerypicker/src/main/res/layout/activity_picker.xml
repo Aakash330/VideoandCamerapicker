@@ -50,6 +50,7 @@
             android:layout_marginTop="@dimen/_16sdp"
             android:layout_marginBottom="@dimen/_50sdp"
             android:src="@drawable/ic_camera"
+            android:background="#454b7c"
             android:tint="#ffffff" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

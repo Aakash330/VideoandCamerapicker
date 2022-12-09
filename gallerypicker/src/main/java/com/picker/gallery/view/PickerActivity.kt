@@ -16,6 +16,10 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 
@@ -46,6 +50,21 @@ class PickerActivity : AppCompatActivity() {
     var IMAGES_THRESHOLD = 0
     var VIDEOS_THRESHOLD = 0
     var REQUEST_RESULT_CODE = 101
+    var openVideoOrCamera = false
+
+    //for taking image from camera
+    val takeimageFromCamera: ActivityResultLauncher<Intent?>? = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult(),
+        object : ActivityResultCallback<ActivityResult?> {
+            override fun onActivityResult(result: ActivityResult?) {
+                if( result!!.resultCode == AppCompatActivity.RESULT_OK && result.data!=null)
+                {
+                    //from data h
+                 //   setImageData(result.data,1)
+                }
+
+            }
+        })
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,29 +89,55 @@ class PickerActivity : AppCompatActivity() {
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
+                if(tab!!.position==1)
+                {
+                    openVideoOrCamera=true //that menas open the video camera activity
+                }else
+                {
+                    openVideoOrCamera=false
+                }
                 tab?.setIcon(selectedTabIcons[tab.position])
+
             }
 
         })
 
         camera.setOnClickListener {
+            if(openVideoOrCamera)
+            {
+                startActivity(Intent(this@PickerActivity, PortraitCameraActivity::class.java))
+                finish()
+                return@setOnClickListener
+            }
+            if (isCameraPermitted()){
+                dispatchTakePictureIntent()
+                Toast.makeText(this@PickerActivity, "permissionn granted", Toast.LENGTH_SHORT).show()
+            }
 
-            Toast.makeText(this@PickerActivity, "image clicked", Toast.LENGTH_SHORT).show()
+            else{
+                Toast.makeText(this@PickerActivity, "permission dney", Toast.LENGTH_SHORT).show()
+
+                checkCameraPermission()
+
+            }
+
+
+
+        /*    Toast.makeText(this@PickerActivity, "image clicked", Toast.LENGTH_SHORT).show()
             try {
-              /*   var launchIntent =
+              *//*   var launchIntent =
                 getPackageManager().getLaunchIntentForPackage("com.aakash.imageandvideopicker");
                 if (launchIntent != null) {
                     startActivity(
                         launchIntent) //null pointer check in case package name was not found ClassNotFoundException
-                }*/
+                }
+              *//*
 
-                startActivity(Intent(this@PickerActivity, PortraitCameraActivity::class.java))
-                finish()
+
             } catch (e:Exception) {
                 e.printStackTrace()
-            }
-          //  if (isCameraPermitted()) dispatchTakePictureIntent() else checkCameraPermission()
-            //startActivity(Intent(this@PickerActivity, Class.forName(" com.aakash.imageandvideopicker.MainActivity")))
+            }*/
+          //  startActivity(Intent(this@PickerActivity, Class.forName(" com.aakash.imageandvideopicker.MainActivity")))
 
         }
     }
@@ -111,7 +156,23 @@ class PickerActivity : AppCompatActivity() {
 
     val REQUEST_TAKE_PHOTO = 1
     private fun dispatchTakePictureIntent() {
-        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        //this i am passing the intent but it may be image size issue
+        takeimageFromCamera!!.launch(intent)
+
+        var photoFile: File? = null
+        try {
+            photoFile = createImageFile()
+        } catch (ex: IOException) {
+        }
+        if (photoFile != null) {
+            val photoURI = FileProvider.getUriForFile(this, "com.picker.gallery.fileprovider", photoFile)
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+
+        }
+
+       /* val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         if (takePictureIntent.resolveActivity(packageManager) != null) {
             var photoFile: File? = null
             try {
@@ -121,9 +182,10 @@ class PickerActivity : AppCompatActivity() {
             if (photoFile != null) {
                 val photoURI = FileProvider.getUriForFile(this, "com.picker.gallery.fileprovider", photoFile)
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO)
+
+               startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO)
             }
-        }
+        }*/
     }
 
     @SuppressLint("SimpleDateFormat")

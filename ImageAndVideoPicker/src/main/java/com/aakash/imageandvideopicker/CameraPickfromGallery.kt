@@ -63,10 +63,10 @@ class CameraPickfromGallery : AppCompatActivity() {
         startActivityForResult(i, 101)
        // setContentView(R.layout.activity_camera_pickfrom_gallery)
 
-
         binding.btnPlaynext.setOnClickListener {
             if (checkCamStoragePer())
                 openTrimActivity(path)
+
         }
     }
 
