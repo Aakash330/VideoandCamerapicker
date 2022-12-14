@@ -1,4 +1,4 @@
-package com.sherazkhilji.videffects;
+package com.aakash.imageandvideopicker.videofilter;
 
 import android.opengl.GLSurfaceView;
 

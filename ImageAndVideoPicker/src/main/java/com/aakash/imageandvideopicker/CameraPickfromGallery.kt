@@ -25,6 +25,9 @@ import com.aakash.imageandvideopicker.databinding.ActivityCameraPickfromGalleryB
 import com.aakash.imageandvideopicker.trimvideo.CompressOption
 import com.aakash.imageandvideopicker.trimvideo.LogMessage
 import com.aakash.imageandvideopicker.trimvideo.TrimVideo
+import com.aakash.imageandvideopicker.videofilter.Constants
+import com.aakash.imageandvideopicker.videofilter.VideoActivity
+import com.aakash.imageandvideopicker.videofilter.playeroption.SamplePlayerActivity
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
@@ -65,9 +68,12 @@ class CameraPickfromGallery : AppCompatActivity() {
 
         binding.btnPlaynext.setOnClickListener {
             if (checkCamStoragePer())
-                openTrimActivity(path)
+                openFilterActivity()
+               // openTrimActivity(path)
 
         }
+
+
     }
 
 
@@ -81,7 +87,6 @@ class CameraPickfromGallery : AppCompatActivity() {
             path=mediaList!!.get(0).photoUri
             playthevideoView(path)
             checkCamStoragePer()
-
            // playDashVideo(mediaList!!.get(0).photoUri)
             Toast.makeText(this@CameraPickfromGallery, ""+ mediaList!!.get(0).photoUri, Toast.LENGTH_SHORT).show()
         }
@@ -143,7 +148,7 @@ class CameraPickfromGallery : AppCompatActivity() {
 
         //all controller widget
         //all controller widget
-    /*    farwordBtn = playerView.findViewById<ImageView>(R.id.fwd)
+    /*   farwordBtn = playerView.findViewById<ImageView>(R.id.fwd)
         rewBtn = playerView.findViewById<ImageView>(R.id.rew)
         setting = playerView.findViewById<ImageView>(R.id.exo_track_selection_view)
         speedBtn = playerView.findViewById<ImageView>(R.id.exo_playback_speed)
@@ -272,6 +277,14 @@ class CameraPickfromGallery : AppCompatActivity() {
                 .setCompressOption(CompressOption()) //pass empty constructor for default compress option
                 .start(this, videoTrimResultLauncher)
         }
+    }
+
+    private fun  openFilterActivity()
+    {
+        startActivity(Intent(this@CameraPickfromGallery,VideoActivity::class.java).also {
+            it.putExtra("path",path)
+        })
+
     }
 
 

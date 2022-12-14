@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/save"
+        android:title="Save"
+        android:icon="@drawable/ic_baseline_save_24"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/chooseShader"
+        android:title="Shader"
+        android:icon="@drawable/ic_baseline_movie_filter_24"
+        app:showAsAction="always" />
+
+</menu>

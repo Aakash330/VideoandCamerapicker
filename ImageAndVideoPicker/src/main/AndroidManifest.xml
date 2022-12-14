@@ -26,7 +26,8 @@
             android:exported="false" />
 
         <activity android:name=".trimui.ActVideoTrimmer"/>
-
+        <activity android:name=".videofilter.playeroption.SamplePlayerActivity"/>
+        <activity android:name=".videofilter.VideoActivity"/>
 
 
     </application>
