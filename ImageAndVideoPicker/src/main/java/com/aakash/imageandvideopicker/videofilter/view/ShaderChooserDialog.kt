@@ -34,7 +34,8 @@ class ShaderChooserDialog : DialogFragment() {
 
         val builder: AlertDialog.Builder = AlertDialog.Builder(requireActivity())
         builder.setTitle("Choose effect")
-                .setItems(Array(shaders.count) { i ->
+                .setItems(Array(shaders.count)
+                { i ->
                     shaders.getShaderName(i)
                 }) { _, which ->
                     this.listener?.onSelectShader(shaders.getShader(which))

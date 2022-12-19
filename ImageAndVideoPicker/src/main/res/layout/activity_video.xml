@@ -1,11 +1,11 @@
-
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context="com.aakash.imageandvideopicker.videofilter.VideoActivity"
    >
 
@@ -22,10 +22,33 @@
 
     </FrameLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/filterlist_item_view"
+        android:id="@+id/rcyFilter"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"/>
+
+
+    <TextView
+        android:id="@+id/openFilter"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_60sdp"
+        android:text="open filter "
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:background="#2196F3"
+        android:textColor="@color/white"
+        android:layout_marginStart="8dp"
+        android:visibility="gone"
+        android:layout_marginEnd="8dp"/>
     <androidx.appcompat.widget.AppCompatSeekBar
         android:id="@+id/intensitySeekBar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
+        android:visibility="gone"
         android:layout_gravity="bottom"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />

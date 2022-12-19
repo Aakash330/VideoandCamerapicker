@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -18,13 +19,25 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.aakash.imageandvideopicker.R
 import com.aakash.imageandvideopicker.databinding.ActivityVideoBinding
+import com.aakash.imageandvideopicker.videofilter.adapter.VIdeoFilterOption
 import com.aakash.imageandvideopicker.videofilter.controller.VideoController
 import com.aakash.imageandvideopicker.videofilter.filter.NoEffectFilter
 import com.aakash.imageandvideopicker.videofilter.interfaces.Filter
 import com.aakash.imageandvideopicker.videofilter.interfaces.ShaderInterface
+import com.aakash.imageandvideopicker.videofilter.listener.RvFilterListenr
+import com.aakash.imageandvideopicker.videofilter.model.AssetsMetadataExtractor
+import com.aakash.imageandvideopicker.videofilter.model.FilterModelOption
+import com.aakash.imageandvideopicker.videofilter.model.Metadata
+import com.aakash.imageandvideopicker.videofilter.model.Shaders
+import java.util.ArrayList
 
 
-class VideoActivity : AppCompatActivity() {
+class VideoActivity : AppCompatActivity() ,RvFilterListenr{
+    private lateinit var list: MutableList<FilterModelOption>
+    private lateinit var adpteer:VIdeoFilterOption
+
+    private var filter: Filter = NoEffectFilter()
+    private  lateinit var  shaders:Shaders
 
     companion object {
         const val WRITE_EXTERNAL_STORAGE = 201
@@ -47,7 +60,31 @@ class VideoActivity : AppCompatActivity() {
         val filename = intent.getStringExtra("path")
             ?: throw RuntimeException("Asset name is null")
         videoController = VideoController(this, filename)
+        list=ArrayList()
+        adpteer= VIdeoFilterOption(this@VideoActivity,list,this)
+        binding.rcyFilter.adapter=adpteer
+
+         var metadata: Metadata? = AssetsMetadataExtractor().extract(filename)
+
+        val videoWidth = metadata?.width?.toInt() ?: return
+        val videoHeight = metadata?.height?.toInt() ?: return
+
+         shaders = Shaders(videoWidth, videoHeight)
+
+       for (i in 1..shaders.count-1)
+       {
+           list.add(FilterModelOption(shaders.getShaderName(i),"imag url"))
+
+       }
+        adpteer.notifyDataSetChanged()
+
+        binding.openFilter.setOnClickListener {
+
+
+            videoController!!.chooseShader()
+        }
         binding.progress.setOnClickListener {
+
 
         }
     }
@@ -85,7 +122,7 @@ class VideoActivity : AppCompatActivity() {
                         requestStoragePermissions()
                     } else {
                         println("VideoActivity.onOptionsItemSelected saved your video")
-                       // videoController?.saveVideo()
+                     //  videoController?.saveVideo()
                     }
                 }
                 true
@@ -169,5 +206,31 @@ class VideoActivity : AppCompatActivity() {
 
     fun showToast(msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onClickFilter(pos: Int) {
+
+
+        when (shaders.getShader(pos)){
+
+            is ShaderInterface -> {
+                Log.w("dataa","running interface")
+                showToast("shader")
+                filter = NoEffectFilter()
+                onSelectShader(shaders.getShader(pos) as ShaderInterface)
+               // activity?.onSelectShader(shader)
+            }
+            is Filter -> {
+                showToast("filter")
+                filter = shaders.getShader(pos) as Filter
+                onSelectFilter(filter)
+            }
+            else -> return
+
+        }
+
+     //   Toast.makeText(this@VideoActivity, "filter clicked "+list.get(pos).name, Toast.LENGTH_SHORT).show()
+        //do your filter stuff
+
     }
 }

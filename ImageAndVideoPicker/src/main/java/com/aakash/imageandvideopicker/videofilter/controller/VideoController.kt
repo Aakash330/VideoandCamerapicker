@@ -35,7 +35,6 @@ class VideoController(private var activity: VideoActivity?,
             ?: throw RuntimeException("Asset not found")*/
 
 
-
     private var mediaPlayer: MediaPlayer = MediaPlayer()
   private var metadata: Metadata? = AssetsMetadataExtractor().extract(filename)
 
@@ -91,6 +90,7 @@ class VideoController(private var activity: VideoActivity?,
         val videoHeight = metadata?.height?.toInt() ?: return
 
         val dialog = ShaderChooserDialog.newInstance(videoWidth, videoHeight)
+
         dialog.setListener(object : OnSelectShaderListener {
             override fun onSelectShader(shader: Any) {
                 when (shader) {
